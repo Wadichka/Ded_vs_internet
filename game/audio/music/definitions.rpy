@@ -1,0 +1,1 @@
+define audio.lofi= "audio/music/Lo-Fi Lo-Life of the Ded (Release).mp3"
