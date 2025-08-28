@@ -1,0 +1,1 @@
+image max="images/sprites/max.png"
