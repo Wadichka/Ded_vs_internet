@@ -1,0 +1,28 @@
+/.vscode
+/.vscode/
+
+
+# Python related files.
+*.pyc
+*.pyo
+*.egg-info
+
+# Compiled Ren'Py files.
+*.rpyc
+*.rpyb
+*.rpymc
+
+# Ren'Py log files.
+log.txt
+errors.txt
+traceback.txt
+lint.txt
+
+# Created directories.
+saves/
+tmp/
+cache/
+
+# Created files.
+/screenshot*
+.android.json

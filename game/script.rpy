@@ -16,6 +16,17 @@ define caesar = Character('Гай Юлий Цезарь', color="#c8ffc8")
 define other = Character('Все остальные на улице', color="#c8ffc8")
 define ayanoni = Character('А(яно)нимус', color="#c8ffc8")
 define azazin = Character('Азазин', color="#c8ffc8")
+
+init python:
+   import socket
+
+   def check_internet(host="8.8.8.8", port=53, timeout=1):#проверка соединения посредством подключения к DNS-серверу Google (зачем им там DNS, в Ситилинке дешевле)
+      try:
+         socket.setdefaulttimeout(timeout)
+         socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
+         return True
+      except Exception:
+         return False
 # Игра заканчивается здесь:
 label start:
 
@@ -183,6 +194,14 @@ label cont2:
    "Вот мы тут шутим перед вами про по-"
    "И всячески обрываем шутку, в общем - вы поняли, да?"
    "А тут - буквально голый мужик. Нет, серьёзно, смотрите сами:"
+   $ online = check_internet()
+   if online:
+      "Интернет подключен! Сейчас произойдёт докачка файлов игры. Пожалуйста, не отключайте Деда."
+      jump cont3
+   else:
+      "Нет соединения с интернетом. Возможно, у вас включён VPN. Пожалуйста, проверьте соединение с интернетом, и попробуйте снова."
+      jump cont2
+label cont3:
    show screen loading_screen
 
    # Переменная прогресса
