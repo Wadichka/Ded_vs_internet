@@ -214,12 +214,14 @@ init python:
 ## разделённые дробью.
 
 # define build.itch_project = "renpytom/test-project"
-    config.keymap['fast_skip'] = []
-    config.keymap['fast_skip'].append('mouseup_1')
-
+init python:
+    # Сначала очищаем стандартные бинды
+    config.keymap['dismiss'] = []
     config.keymap['skip'] = []
-    config.keymap['skip'].append('mousedown_1')
 
-    config.keymap['say'] = []
-    config.keymap['say'].append('K_CONTROL')
-    config.keymap['say'].append('K_TAB')
+    # Теперь наоборот:
+    # ENTER, SPACE, LMB → пропуск (skip)
+    config.keymap['skip'].extend(["K_RETURN", "K_SPACE", "mouseup_1"])
+
+    # TAB, CTRL → обычный переход (dismiss)
+    config.keymap['dismiss'].extend(["K_TAB", "K_LCTRL", "K_RCTRL"])
