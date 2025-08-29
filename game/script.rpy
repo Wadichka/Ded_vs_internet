@@ -586,7 +586,7 @@ label attempt4:
       jump test2
    else:
       "Поняли тебя."
-      jump test2
+      #вылет игры
 
 label cont6:
    "Что ж, приступим."
