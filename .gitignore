@@ -1,6 +1,7 @@
 /.vscode
 /.vscode/
 
+*.txt
 
 # Python related files.
 *.pyc
