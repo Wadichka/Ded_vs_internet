@@ -468,6 +468,28 @@ label cont5:
    '"DED VPN был обновлен. Пожалуйста, перезагрузите Деда."'
    "БЛЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯЯ."
    #игра в этот момент автосохраняется и вылетает, при перезапуске она включается уже с последующим текстом*
+   jump restart_event
+
+
+label restart_event:
+   python:
+      import os
+
+
+      restart_flag = os.path.join(config.basedir, "game", "restart_flag.txt")
+
+      if os.path.exists(restart_flag):
+            os.remove(restart_flag)
+            renpy.call_in_new_context("after_restart")
+
+      else:
+         with open(restart_flag, "w") as file:
+            file.write("You restarted the game!")
+
+         renpy.quit()
+
+
+label after_restart:
    "…"
    "Ну и что это была за хуйня?"
    authors "Произошёл аварийный выход."
