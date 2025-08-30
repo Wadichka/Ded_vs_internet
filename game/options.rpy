@@ -114,7 +114,6 @@ define config.window = "auto"
 define config.window_show_transition = Dissolve(.2)
 define config.window_hide_transition = Dissolve(.2)
 
-
 ## Стандартные настройки #######################################################
 
 ## Контролирует стандартную скорость текста. По умолчанию, это 0 — мгновенно,
