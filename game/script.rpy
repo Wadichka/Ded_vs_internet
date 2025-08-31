@@ -437,7 +437,9 @@ label cont4:
    "…"
    "Сохранитесь здесь."
    scene bg greece
-   play music ancientgreece
+   play music ancientgreece fadein 2
+   play ambient sea fadein 3
+   $ renpy.music.set_volume(0.25, channel="ambient")
    "Я очутился… {w} а где я блять."
    "Взгляни вокруг, оглянись назад…"
    "Все недовольны и вечно ворчат. (Как dedы)"
@@ -589,6 +591,7 @@ label cont4:
    caesar "Ti eblan? Ti kak damky sdelal?"
    ded "Смотри, если бы ты пошёл на мид и сделал хедшот с дигла, мы бы успели забрать руну на топе. Там пудж мог забрать Джинкс, а Омен бы не успел кинуть смок."
    gilg "Как ты меня заебал."
+   stop ambient fadeout 1
    stop music fadeout 3
    "Гильгамеш дал мне подзатыльник и я потерял сознание."
    scene black with dissolve
@@ -1367,6 +1370,9 @@ label end2:
    $ renpy.quit()
 label end3:
    #включается заставки дед тим и выпадение людочки
+   $ renpy.movie_cutscene('videos/zastavka1.ogv')
+   $ renpy.movie_cutscene('videos/zastavka2.ogv')
+   $ renpy.movie_cutscene('videos/людочка.ogv')
    ded "Ого! Мне повезло!"
    authors "Блять, ты сейчас опять сломаешь вселенную и тебе придётся её спасать. Мы про это сюжет уже писали."
    ded "Да похуй мне, в общем-то."
