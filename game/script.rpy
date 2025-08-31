@@ -29,10 +29,9 @@ define nmike = Character(_("Michael Jackson"), color="#f71313ff", kind=nvl)
 define ya3 = Character('YA3', color="#ff0077ff")
 define nya3 = Character(_("YA3"), color="#ff0077ff", kind=nvl)
 define nya = Character('Намиэ Ягири', color="#c8ffc8")
-define nnya = Character(_("Намиэ Ягири"), color="#c8ffc8", kind=nvl)
-define maxos = Character('Максос', color="#26b1a5ff")
-define garik = Character('Гарик Харламов', color="#fffd94ff")
-define anton = Character('Антон', color="#c73c3cff")
+define nnya = Character(_("Намиэ Ягири"), color="#027502", kind=nvl)
+define maxos = Character('Максос', color="#c8ffc8")
+define garik = Character('Гарик Харламов', color="#c8ffc8")\
 define n = Character(None, kind=nvl)
 
 init python:
@@ -1210,8 +1209,7 @@ label cont7:
    maxos "А ты что, не веришь?"
    ded "Не в масть тебе такие ушки, снимай давай."
    #(цг Рома КАКОЙ РОМА ЭТО МАКСОС СУКА РЕБЕЛ с ушами говорит паааа)
-   scene cg sobes_maxospaaa
-   maxos "Паааа…"
+   maxos: "Паааа…"
    azazin "Ладно, Максос, сними эту хуйню, а то нам ещë собес проводить."
    scene cg sobes_azazin
    azazin "Так вот, Макакий, вы на каком-то там ебанутом языке программировали, так?"
