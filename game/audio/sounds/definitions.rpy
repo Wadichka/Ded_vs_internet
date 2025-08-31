@@ -1,0 +1,7 @@
+define audio.clacson = "audio/sounds/700124__manofham__bicycle-bike-horn-single-honk-3.mp3"
+define audio.fnaf2 = "audio/sounds/fnaf2.ogg"
+define audio.fall = "audio/sounds/fall.mp3"
+define audio.avariinii = "audio/sounds/аварийный-выход.mp3"
+define audio.buterbrodi = "audio/sounds/бутерброды.mp3"
+define audio.garikaaaa = "audio/sounds/garikaaaa.mp3"
+define audio.laugh = "audio/sounds/laugh.mp3"
