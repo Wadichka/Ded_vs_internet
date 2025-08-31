@@ -1369,6 +1369,9 @@ label end2:
    $ renpy.quit()
 label end3:
    #включается заставки дед тим и выпадение людочки
+   $ renpy.movie_cutscene('videos/zastavka1.ogv')
+   $ renpy.movie_cutscene('videos/zastavka2.ogv')
+   $ renpy.movie_cutscene('videos/людочка.ogv')
    ded "Ого! Мне повезло!"
    authors "Блять, ты сейчас опять сломаешь вселенную и тебе придётся её спасать. Мы про это сюжет уже писали."
    ded "Да похуй мне, в общем-то."
