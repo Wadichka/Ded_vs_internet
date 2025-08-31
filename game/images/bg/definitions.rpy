@@ -1,3 +1,14 @@
+image black = "images/bg/black.jpg"
+image bg greece = "images/bg/anshient greez.png"
+image bg lab = "images/bg/dedteam lab.png"
+image bg dedtube1 = "images/bg/dedtube 1.png"
+image bg dedtube2 = "images/bg/dedtube 2.png"
+image bg desktop = "images/bg/desktop.png"
+image bg wallpaper = "images/bg/обои компьютера.png"
+image bg taganrog = "images/bg/таганрог дед.png"
+image bg convertio = "images/bg/convertio.png"
+image bg site = "images/bg/site.png"
+
 image sky:
     subpixel True
     contains:

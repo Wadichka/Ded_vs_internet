@@ -355,26 +355,16 @@ screen main_menu():
     ## заменять этот.
     tag menu
 
-    style_prefix "main_menu"
+    imagemap:
+        ground "gui/mm_100jam_ground.png"
+        idle "gui/mm_100jam_idle.png"
+        hover "gui/mm_100jam_hover.png"
 
-    add gui.main_menu_background
-
-    ## Эта пустая рамка затеняет главное меню.
-    frame:
-        pass
-
-    ## Оператор use включает отображение другого экрана в данном. Актуальное
-    ## содержание главного меню находится на экране навигации.
-    use navigation
-
-    if gui.show_name:
-
-        vbox:
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "[config.version]":
-                style "main_menu_version"
+        hotspot (1362, 617, 400, 60) action Start()
+        hotspot (1362, 721, 395, 60) action ShowMenu("load")
+        hotspot (1362, 823, 350, 60) action ShowMenu("preferences")
+        hotspot (1362, 936, 200, 60) action Quit(confirm=True)
+        hotspot (5, 13, 280, 70) action OpenURL("https://vk.com/jamof100flowers")
 
 
 style main_menu_frame is empty

@@ -1,39 +1,41 @@
-﻿define ded = Character('Дед', color="#c8ffc8")
-define nded = Character(_("Дед"), color="#027502", kind=nvl)
-define psy = Character('Психиатр', color="#c8ffc8") #ОПА ГАНГНАМ СТАЙЛ
-define authors = Character('Авторы', color="#c8ffc8")
-define n1ke = Character('N1keTheRebel', color="#c8ffc8")
-define manest = Character('Manest', color="#c8ffc8")
-define faith = Character('Вера', color="#c8ffc8")
-define cc = Character('Comandante Cartucho', color="#c8ffc8")
-define socr = Character('Сократ', color="#c8ffc8")
-define diog = Character('Диоген', color="#c8ffc8")
-define hren = Character('Хрен', color="#c8ffc8")
-define gilg = Character('Гильгамеш', color="#c8ffc8")
-define arthur = Character('Король Артур', color="#c8ffc8")
-define maked = Character('Македонский', color="#c8ffc8")
-define ayano = Character('Аянокоджи', color="#c8ffc8")
-define caesar = Character('Гай Юлий Цезарь', color="#c8ffc8")
-define other = Character('Все остальные на улице', color="#c8ffc8")
-define ayanoni = Character('А(яно)нимус', color="#c8ffc8")
-define azazin = Character('Азазин', color="#c8ffc8")
-define nazazin = Character(_("Азазин"), color="#027502", kind=nvl)
-define player = Character('Игрок', color="#c8ffc8")
-define emmma7335 = Character('emma7335', color="#c8ffc8")
-define fakedb = Character('Фейк Дани Балахнина', color="#c8ffc8")
-define morsha = Character('Morsha', color="#c8ffc8")
-define n0thing = Character('n0thing', color="#c8ffc8")
-define mike = Character('Michael Jackson', color="#c8ffc8")
-define mikequestion = Character('Michael Jackson?', color="#c8ffc8")
-define nmike = Character(_("Michael Jackson"), color="#027502", kind=nvl)
-define ya3 = Character('YA3', color="#c8ffc8")
-define nya3 = Character(_("YA3"), color="#027502", kind=nvl)
+﻿define ded = Character('Дед', color="#c25913ff")
+define nded = Character(_("Дед"), color="#c25913ff", kind=nvl)
+define psy = Character('Психиатр', color="#ffffffff") #ОПА ГАНГНАМ СТАЙЛ
+define authors = Character('Авторы', color="#fbff00ff")
+define n1ke = Character('N1keTheRebel', color="#9dff00ff")
+define manest = Character('Manest', color="#ff0000ff")
+define faith = Character('Вера', color="#018a01ff")
+define cc = Character('Comandante Cartucho', color="#ff0000ff")
+define socr = Character('Сократ', color="#44d4f8ff")
+define diog = Character('Диоген', color="#389b96ff")
+define hren = Character('Хрен', color="#ffffffff")
+define gilg = Character('Гильгамеш', color="#fffb00ff")
+define arthur = Character('Король Артур', color="#2a4bb8ff")
+define maked = Character('Македонский', color="#fc7201ff")
+define ayano = Character('Аянокоджи', color="#c94158ff")
+define caesar = Character('Гай Юлий Цезарь', color="#f700ffff")
+define other = Character('Все остальные на улице', color="#ffffffff")
+define ayanoni = Character('А(яно)нимус', color="#f87a7aff")
+define azazin = Character('Азазин', color="#003cffff")
+define nazazin = Character(_("Азазин"), color="#003cffff", kind=nvl)
+define player = Character('Игрок', color="#3bf8ffff")
+define emma7335 = Character('emma7335', color="#ff0000ff")
+define fakedb = Character('Фейк Дани Балахнина', color="#00ff00ff")
+define morsha = Character('Morsha', color="#615a20ff")
+define n0thing = Character('Rui', color="#bd4040ff")
+define mike = Character('Michael Jackson', color="#f71313ff")
+define mikequestion = Character('Michael Jackson?', color="#f71313ff")
+define nmike = Character(_("Michael Jackson"), color="#f71313ff", kind=nvl)
+define ya3 = Character('YA3', color="#ff0077ff")
+define nya3 = Character(_("YA3"), color="#ff0077ff", kind=nvl)
 define nya = Character('Намиэ Ягири', color="#c8ffc8")
 define nnya = Character(_("Намиэ Ягири"), color="#027502", kind=nvl)
 define maxos = Character('Максос', color="#c8ffc8")
-define garik = Character('Гарик Харламов', color="#c8ffc8")
+define garik = Character('Гарик Харламов', color="#c8ffc8")\
 define n = Character(None, kind=nvl)
 
+init python:
+   renpy.music.register_channel("ambient","sfx",loop=True,tight=True)
 
 init python:
    import socket
@@ -45,9 +47,15 @@ init python:
          return True
       except Exception:
          return False
+
 init python:
    import os
    user_name = os.getenv("USERNAME") or os.getenv("USER")
+
+init:
+   transform txt_up:
+      yalign 1.5
+      linear 20.0 yalign -1.5
 
 # Игра заканчивается здесь:
 label start:
@@ -55,7 +63,10 @@ label start:
    #MJ
    $ _skipping = False
    "Если вам нужна помощь - зайдите в 'Помощь'"
-   scene sky
+   scene sky with dissolve
+   show mj_god with dissolve
+   play ambient wind fadein 2
+   $ renpy.music.set_volume(0.25, channel="ambient")
    "Меня зовут Майкл Джексон, мне 50,822 года."
    "А, стоп, я же даже не дед."
    "Хотя, если так подумать — у меня тоже было куча несовместимых болезней. {w} Витилиго, волчанка, бессоница и депрессия в 50.822 года, стафилококковая инфекция, простуда, коронавирускоронавирус, синус (косинус), тангенсуоидная тахикардия."
@@ -63,17 +74,43 @@ label start:
    "Тогда-то я и понял, что у {b}смерти много лиц.{/b}"
    "Ну всё, тема соблюдена, теперь к сути."
    "{image=max}"
-   #blackscreen + hardpause
-   #MJ
-   #Sky Full of Deds
+   "Вы попались на псиоп, мои дорогие друзья. Никакого 'Последнего путешествия Деда' не существовало."
+   "Поэтому мы должны вас предупредить, неогранённые младшие уборщики."
+   "Вы играете в 'Дед против Интернета: ENVELOPE EDITION'."
+   "Добро пожаловать в сущий пиздец!"
+   "Кстати, вы заметили, как на заднем фоне звёзды анимированы?"
+   stop ambient
+   $ renpy.movie_cutscene('videos/disclaimer.ogv')
+   scene sky with dissolve
+   show mj_god with dissolve
+   play music skyfullofdeds fadein 1
    "Здравствуй, наш дорогой неогранённый младший уборщик."
    "Во-первых, {w} ты принят в DED Team."
    "Во-вторых — мы бы хотели о тебе узнать чуточку побольше о тебе."
    "В-третьих — молодец, что заметил повторение слова “о тебе”. Ты повышен."
    "В-четвёртых — обычно я тут один заседаю, но в этот раз я не один."
+   hide mj_god
+   show mj_god:
+      xalign 0.01 yalign 0.999
+   show ya3_god with dissolve:
+      xalign 0.99 yalign 0.999
    "С нами YA3, прям ща прям тут окэ"
    "Я3, не ЯЗ, знай разницу."
+   show mj_god:
+      xalign 0.01 yalign 0.999
+   show ya3_god:
+      xalign 0.5 yalign 0.999
+   show azazin_god with dissolve:
+      xalign 0.99 yalign 0.999
    "С нами Azazin, энвилоуп войд сэкс фламингоу индиана джиzzz (zenless zone zero)"
+   show mj_god:
+      xalign 0.01 yalign 0.999
+   show ya3_god:
+      xalign 0.33 yalign 0.999
+   show azazin_god:
+      xalign 0.66 yalign 0.999
+   show nya_god with dissolve:
+      xalign 0.99 yalign 0.999
    "И с нами Намиэ Ягири. Мы не смотрели Дюрарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарарара"
    "но уверены, что она положительный персонаж и абсолютно точно не хочет трахнуть своего брата. (Никитин привет, Лучик Жизни в конце не умрёт драйва)"
    "Так вот, наш неогранённый младший уборщик. Отвечай на наши вопросы, без иронии и без рофла."
@@ -159,13 +196,17 @@ label cont:
 
 label cont2:
    "Что ж, спасибо тебе, наш дорогой младший уборщик, что честно и без рофла ответил на вопросы."
+   stop music fadeout 2
    "А теперь — приятного тебе пчтения"
-   #дисклеймер
-   #Lo-Fi Lo-Life of the Ded
-   #(фон Таганрога)
+   scene black with dissolve
+   $ renpy.pause(0.5, hard = True)
+   scene bg taganrog with dissolve
+   play music lofi fadein 2
    $ _skipping = True
    "Меня зовут Стиралкин Макакий Павианович. Мне 4.6793(7) - 3,(3)i лет. У моего прадеда совсем не было внуков. У моего деда тоже. Спросите, откуда я тогда взялся?"
    psy "Да, откуда Вы взялись?"
+   play movie "videos/porno.ogv"
+   $ renpy.movie_cutscene("videos/porno.ogv")
    #(вставить на фон мем PORNO PORNO PORNO)
    "-Порно."
    "Однажды в Саратовском институте медицинской робототехники двое научных сотрудников спорили, какая часть тела наиболее трудно поддаётся протезированию."
@@ -186,13 +227,18 @@ label cont2:
    authors "Да и вообще, некоторые нас первый раз читают, давайте без локальщины и неактульных гэгов (7/10), вон у нас в музыке на фоне тун тун тун сахур актуальные мемы смешно, а вы тут про свои холодцы и по-"
    "-няли, идём дальше по сюжету."
    "В общем, в университете мне поставили протез бошки. Или башки. (сюжет Катавы 2 великолепен) Или бабки на филипиннах. Не важно."
+   show ded_cutie with dissolve
    "А ещё я рыжий, у меня два хвостика с бантиками, и я цундере. И вовсе я не испытываю симпатию к тебе, бака!"
+   hide ded_cutie
+   show ded_angry
    "Стоп, авторы, вы долбоёбы? Схуяли я стал цундере с двумя хвостиками?"
    n1ke "Да, вопросы? Инда Каране лучшая девочка в “100 девушках, которые очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень-очень"
    n1ke "…любят тебя!"
    manest "Какая нахуй Инда Каране, это Дайджест-тян вообще-то, ага да. Всем известно, что аниме-индустрия и игры вдохновляются РуВНом."
    manest "Persona 3 Reload вообще вдохновлялась Эмилем Шагаповым и его Hateful Days."
    "Логично? По-моему, нет. Похуй. Идём дальше."
+   hide ded_angry
+   show ded_sad
    "Так вот, я - бюджетник. У меня есть стипендия , которую я трачу на разные приятные вещи. Например на по-"
    "-есть, попить чего-нибудь вкусненького. Или поставить ставку на Фальконов. Ладно, ставки я не ставлю. У меня так дед додэпнул хату и остался без дома. Бабушка его жестко отстра-"
    "-нила от занятий в университете. А потом избила в ГТА 5 РП. И потратила всю его пенсию на покупку лучшей игры в истории человечества {w} - Concord."
@@ -202,8 +248,9 @@ label cont2:
    "Короче, вот такая у меня жизнь. Была, во всяком случае."
    "Пока однажды я не увидел по-"
    "-стоянно открытую дверь на одном из этажей нашего вуза."
+   stop music fadeout 2
    "Ну а я чё, я зашёл туда."
-   #(стоп музыка, чёрный экран)
+   scene black with dissolve
    "И как бы вам сказать…"
    "Вот мы тут шутим перед вами про по-"
    "И всячески обрываем шутку, в общем - вы поняли, да?"
@@ -216,6 +263,7 @@ label cont2:
       "Нет соединения с интернетом. Возможно, у вас включён VPN. Пожалуйста, проверьте соединение с интернетом, и попробуйте снова."
       jump cont2
 label cont3:
+   $ _skipping = False
    show screen loading_screen
 
    # Переменная прогресса
@@ -235,55 +283,133 @@ label cont3:
    "..."
    jump cont4
 label cont4:
-   #You’ll Never Die
-   #(цг лаборатория DED Team)
+   play music youllneverdie fadein 2
+   scene bg lab with dissolve
+   show vera_mouthopen with dissolve:
+      xalign 0.2 yalign 0.999
+   show socr_smile with dissolve:
+      xalign 0.99 yalign 0.999
    faith "вы никогда не умрёте…"
+   $ _skipping = True
+   hide vera_mouthopen
+   show vera_normal:
+      xalign 0.2 yalign 0.999
    "Ещё какая-то Вера делает ему массаж и всякую херню ему говорит."
+   hide vera_normal
+   show vera_mouthopen:
+      xalign 0.2 yalign 0.999
    faith "О, Макакий, привет. Мы как раз с Сократом собирались идти в лабораторию DED Team. Ты пойдешь с нами?"
+   hide vera_mouthopen
+   show vera_normal:
+      xalign 0.2 yalign 0.999
    ded "Ну во-первых, откуда у этих долбоёбов (ну в смысле, у DED Team) лаборатория?"
    cc "Ну допустим, от меня. Тебе что-то не нравится?"
    ded "Извините, Командантий Картучевич, не признал. Не отправляйте меня в Левенцовку( {w} (блять, авторы, вы ещё с прошлого Деда не объяснили, что это и где это нахуй)"
    cc "А вот скоро и узнаешь. Заранее соболезную тебе, чувак. Ужасное место.{w} Кстати, хотите анекдот в тему?"
    "Ладно, похуй."
    ded "Во-вторых, и какие же опыты в этой лаборатории ставите? Небось сексуальные?"
+   hide socr_smile
+   show socr_normal:
+      xalign 0.99 yalign 0.999
    socr "Ну во-первых, да."
    socr "А во-вторых, ты совсем долбоёб? Секса не существует. А Вера мне просто делает массаж, прям ща прям тут оке"
+   hide vera_normal
+   show vera_mouthopen:
+      xalign 0.2 yalign 0.999
    faith "Расслабьтесь… {w} проблем не существует… {w} вы никогда не умрёте…"
+   hide vera_mouthopen
+   show vera_normal:
+      xalign 0.2 yalign 0.999
    "Реально никогда не умру. Авторы походу не шутили про Five Nights with Ded год назад. Суки бляди("
    "Ладно, похуй."
    ded "И в-третьих, конечно же иду!"
    "Ну и хули, мы сделали биг степики (цао цао) в лабораторию."
    "В лаборатории уже стояла Микроволновая печь DEXP MB-70 чёрный В кредит от 170 ₽/ мес., а внутри неё лежал {w} банан. "
+   scene cg ayanoyagami with dissolve
    "Да, вы правильно поняли, это отсылка на моё любимое аниме от студии Мэдхауз Брэйн Бэйс Драм-н-Бэйс 808 рэп за 5 минут моргенштерн – “Тетрадь Штейна”."
+   scene cg ayanomicrowave with dissolve
    "Как сейчас помню первую серию, где главный герой, Аянокоджи, сидит в классе, и видит, как с неба падает Микроволновая печь DEXP MB-70 чёрный В кредит от 170 ₽/ мес., в которой лежит банан."
    "А там инструкция говорит:"
+   scene cg microwaverules with dissolve
    "“Это Микроволновая печь Деда. Если написать на банане имя человека, сказать Аянокоджи, и поместить банан в микроволновку, человек превратится в банан через 40 секунд по причине Аянокоджи”."
+   scene cg namie_lowlite with dissolve
    "А потом он в течение всего сюжета сражается с гениальным детективом-кошкодевочкой НЯ {w} – Намие Ягири из аниме “Доророророророро”."
-   #звук клаксона
+   play sound clacson
+   $ renpy.music.set_volume(0.1, channel="sound")
    "Ах, ностальгия. О чём это я?"
+   scene bg lab
+   show ded_normal
    "На микроволновке лежала маска Аянонимуса."
    "Я решил её надеть и очень пожалел об этом"
-   #добавить шкалу toxic и звуки маски из fnaf 2
+   show toxic:
+      xalign 0.01 yalign 0.01
+   play sound fnaf2
+   $ renpy.music.set_volume(0.25, channel="sound")
    "Блять, ну и нахуя она мне нужна?"
+   hide toxic
+   hide ded_normal
+   show ded_sad:
+      xalign 0.75 yalign 0.99
+   show vera_mouthopen with dissolve:
+      xalign 0.2 yalign 0.99
    faith "Акакий, вы призвали Аянонимус!"
+   hide vera_mouthopen
+   show vera_normal:
+      xalign 0.2 yalign 0.99
    ded "Какой нахуй дрочимус"
+   show vera_mouthopen:
+      xalign 0.2 yalign 0.99
    faith "С помощью данной машины вы сможете просмотреть память ваших предков и изменить мир!"
+   hide ded_sad
+   hide vera_mouthopen
+   show vera_normal:
+      xalign 0.2 yalign 0.99
+   show ded_normal:
+      xalign 0.75 yalign 0.99
    ded "О заебись идея, всегда хотел удалить из мира диабет, рак, инвалидность, аз*****, не****, фильтр К**мана и прочие болезни (но не туберкулёз), которые свалились на моего прапрапрапрапрапрапрапрапрапрапрапрапрапраdedа в Мексике."
    "Ещё было бы неплохо удалить авторов dedа. Эти замечательные люди - как я их люблю!"
+   show vera_mouthopen:
+      xalign 0.2 yalign 0.99
    faith "Что?"
+   hide vera_mouthopen
+   show vera_normal:
+      xalign 0.2 yalign 0.99
    authors "Что? Он говорит, то что о нас думает. Мы точно не переделали ему реплику, как наблюдающие за Аянокоджи не переделали его ГЕНИАЛЬНЫЙ ХОД В ШАХМАТАХ."
    authors "Кстати, Магнус Карлсон соснул бы у Аянокоджи."
+   hide ded_normal
+   show ded_angry:
+      xalign 0.75 yalign 0.99
    ded "Какой нахуй карлсон? Который малыша т****л?"
    authors "Ну да, троллил. Ты думаешь, откуда стокгольмский синдром взялся?"
+   hide ded_angry
+   show ded_sad:
+      xalign 0.75 yalign 0.99
    ded "Из стокгольма, столицы швейцарии."
    authors "Ты долбаеб? Его назвали в честь мелкого пивного бочонка с пропеллером, который прилетал к стокгольмским маленьким детям, и по-стокгольмски их троллил. {w} А потом т****л. Тоже по-стокгольмски."
    authors "вцщзлуазцлуаьзцуалцузацудазцулацхуалцузацулхацул{w}пенис"
    authors "Простите, Аянокоджи перехватил доступ к джойказино. {w} (ого мемы 2к17 сохры референс андрей коршунов легенда спасибо за детство) {w} Сделайте ставку прямо сейчас на dedbet.com!"
+   hide ded_sad
+   show ded_angry:
+      xalign 0.75 yalign 0.99
    ded "Вы дебилы? Нахуй вы Геншин Старрейл Зенлесс прямо в новелле рекламируете?"
    n1ke "Я твоего брата/кума/свата/вомбата/идитенахуймысаминеебёмстепеньвашего родства вообще в DED Impact вставлял, а ты тут жалуешься."
    n1ke "И вообще, иди по сюжету, заебал."
+   hide vera_normal
+   hide ded_angry
+   show ded_angry:
+      xalign 0.5 yalign 0.999
+   show vera_normal:
+      xalign 0.1 yalign 0.999
+   show socr_normal with dissolve:
+      xalign 0.99 yalign 0.999
    socr "Короче, это Аянонимус, и он работает как А(яно)нимус. Понятно?"
+   hide ded_angry
+   show ded_sad:
+      xalign 0.5 yalign 0.999
    ded "Да. {w} (нет) {w} (Бани Далахнина ответ)"
+   hide socr_normal
+   show socr_smile:
+      xalign 0.99 yalign 0.999
    socr "Я над ним работал {s}две минуты{/s}всю жизнь!!"
    socr "Короче, это Аянонимус, и он работает как А(яно)нимус."
    socr "Короче, это Аянонимус, и он работает"
@@ -291,37 +417,56 @@ label cont4:
    socr "Короче, это"
    socr "Короче, {w} с помощью него ты можешь перемещаться по времени и прожить жизнь любой исторической личности. Например, какого-нибудь древне*****ского философа. {w} (ну кроме меня, я уже тут)"
    ded "Окей, я хочу прожить жизнь Диогена."
+   hide socr_smile
+   show socr_sad:
+      xalign 0.99 yalign 0.999
    socr "Чел, но он же в бочке сидел."
    ded "Ну не на хуях же. {w} Всё, заебал, врубай Аянонимус."
+   hide socr_sad with dissolve
+   hide vera_normal with dissolve
+   hide ded_sad with dissolve
    "Сократ врубил Аянонимус."
    "Сначала ничего не произошло. Только микроволновка издала странный звук."
    "А затем она резко заработала, и…"
+   stop music fadeout 4
    "А затем она резко зарабоувваьдвалукауькпцтала, и…уаьлцщлуашзцтуащ"
    "оцуаитцзущатищцуиазш"
-   #чёрный экран и звук падения
+   scene black with dissolve
    "А зателпуц-пткцлптукщьпужькмхщьукхмщьцкуъзп"
    "ьцупьцупьцуьпъуцьпьуцъпъуухьщаипукиукихьукьзиькуиукхиьузкиьзуи"
    "…"
    "Сохранитесь здесь."
-   #Anshient Greez
-   #Фон древней греции
+   scene bg greece
+   play music ancientgreece
    "Я очутился… {w} а где я блять."
    "Взгляни вокруг, оглянись назад…"
    "Все недовольны и вечно ворчат. (Как dedы)"
    "И я тоже буду ворчать, {w} gordonfreemanissavelyопятьвсехokayallreadyzaebis'"
    "A pochemu ya na angliyskom govoryu?"
    authors "ты еблан? Это древнегреческий, ты в Древней Греции."
+   show ded_angry with dissolve
    ded "Ξέρεις ότι είσαι ομοφυλόφιλος? Γιατί διάολο με έβαλες σε ένα βαρέλι? Перевести с помощью DeepL"
    ded "Я опять что-то про порно спизданул? Перевести с помощью DeepL"
    authors "Да, знаем про смартфон Vivo."
    ded "Короче, я попал в древнюю Грецию?"
    authors "Да, Боспорское царство, г. Афины, 344002, ул. Гелиогабала, 14/87."
+   hide ded_angry
+   show ded_angry:
+      xalign 0.1 yalign 0.999
+   show no_sprite with dissolve:
+      xalign 0.8 yalign 0.999
    diog "Ну здарова, дедок. Как звать? Сколько лет? Чай, кофе? {s}Поебемся{/s}Выпьем? По какой статье сюда попал?"
    ded "Блять, ты кто и куда я попал?"
    #Диоген: Ты попал в Афины, дедок. А ещё ты спиздил у меня тело. Но мне похуй, я на чилле, на расслабоне. 
    #Дед: Т.е. я в Диогене?
    #Авторы: В ГТА 5 РП.
    diog" Сейчас поймешь."
+   show ded_angry:
+      xalign 0.2 yalign 0.999
+   show no_sprite:
+      xalign 0.6 yalign 0.999
+   show no_sprite2 with dissolve:
+      xalign 0.8 yalign 0.999
    "К бочке подошел какой-то хрен в золоченой анатомической кирасе."
    hren "Приветствую, мудрейший из афинян! Я Александр Филиппович, царь македонский, царь персидский, царь хаоситский и прочая-прочая. Наслышан я о тебе и искренне восхищен твоей мудростью. Могу ли я что-нибудь для тебя сделать?"
    ded "бля дед съеби нахуй с площади и не загораживай мне солнце"
@@ -335,6 +480,14 @@ label cont4:
    diog "Я тебе отвечаю, сейчас они меня (тебя(нас)) по сюжету заставят выйти на агору и публично дрочить перед согражданами."
    ded "А минусы будут?"
    "Ко мне неожиданно подошёл какой-то мужик в золоте."
+   show ded_angry:
+      xalign 0.01 yalign 0.999
+   show no_sprite:
+      xalign 0.33 yalign 0.999
+   show no_sprite2:
+      xalign 0.66 yalign 0.999
+   show no_sprite3 with dissolve:
+      xalign 0.99 yalign 0.999
    gilg "Ха, приветствую тебя, Диоген."
    ded "Здарова? Только меня Макакием звать."
    gilg "Макакием?"
@@ -346,15 +499,36 @@ label cont4:
    gilg "{s}Нет, я это все снял с мертвого цыгана{/s}Конечно, низшее создание, у которого вся жизнь сводится к побухтеть и попердеть."
    ded "Тогда хули ты в Греции забыл, еблан? Ты щас в Ираке должен быть. И вообще, тебя быть не должно, ты ещё раньше жил."
    gilg "А хули мы на русском разговариваем, если мы в древней греции?"
+   show no_sprite:
+      xalign 0.25 yalign 0.999
+   show no_sprite2:
+      xalign 0.5 yalign 0.999
+   show no_sprite3:
+      xalign 0.75 yalign 0.999
+   show no_sprite4 with dissolve:
+      xalign 0.99 yalign 0.999
+   show ded_angry:
+      xalign 0.01 yalign 0.999
    arthur "Yeah, why do you guys speak Russian? I don’t understand a single word."
    ded "КАКОЙ НАХУЙ РУССКИЙ В ДРЕВНЕЙ ГРЕЦИИ? КАКОЙ КОРОЛЬ АРТУР?"
    maked "Што правите, момци?"
    ded "Македонский на украинском базарит?"
+   ded "Мало того, на него места уже нет на экране."
+   authors "Т.е., что у него нет спрайта тебя не смущает?"
    maked "Ова е Македонско, дедо. (ого японский эгоисто исаге ёичи)"
    ded "Блять, куда я попал?"
    caesar "Γεια σας παιδιά. Перевести с помощью DeepL"
    ded "… {w} Перевести с помощью DeepL"
+   hide no_sprite4
+   hide no_sprite3
+   hide no_sprite2
+   show ded_angry:
+      xalign 0.2 yalign 0.999
+   show no_sprite:
+      xalign 0.8 yalign 0.999
    ded "Да иди вы нахуй со своим Перевести с помощью DeepL! Схуяли император Древнего Рима на греческом пиздит, если там на латыни общались? Перевести с помощью DeepL"
+   ded "И куда все делись ебать?"
+   authors "Представь, что их там несколько."
    arthur "Oh hi Caesar (King)! How do you do?"#Никита иди нахуй я из БК уволился
    caesar "Da vse puchkom, Arturia. Hochu s vami v nardi sigrat’."
    ded "Он теперь транслитом заговорил. Ладно, спасибо на этом."
@@ -383,8 +557,11 @@ label cont4:
    caesar "DA YA PONIMAYU TEBYAAAAAAAA! Перевести с помощью DeepL"
    caesar "Koroche, davai rasskazivai pravila uzhe."
    ded "Короче, у нас есть доска с кружками…"
-   #вставить мем one eternity later
+   play movie "videos/One-Eternity-Later-_-SpongeBob-Time-Card-_9.webm"
+   $ renpy.movie_cutscene("videos/One-Eternity-Later-_-SpongeBob-Time-Card-_9.webm")
+   window auto
    ded "И, таким образом, определяется победитель."
+   window auto
    ded "Всем всё понятно?"
    arthur "I’ve only heard “one eternity later”. What the fuck?"
    ded "Ты давай не пизди мне тут, я нихуя тебя не понял."
@@ -396,8 +573,13 @@ label cont4:
    ded "Аянокоджи?"
    maked "Пошёл нахуй. Он только в шахматы умеет играть. Мы в нарды ебашимся. Кстати, у меня больше всех шансов здесь победить."
    ayano "Мне жаль тебя разочаровывать, Дедонский…"
-   #вставить ЦГ из 3 опенинга КП, где Аянокоджи сидит на нардах
+   scene cg ayanochess with dissolve
    ayano "…но в нарды я тоже умею играть. Не просто же так меня в сюжет вставили, чтобы я вас всех переиграл, как Аянокоджи."
+   scene bg greece
+   show ded_angry:
+      xalign 0.2 yalign 0.999
+   show no_sprite:
+      xalign 0.8 yalign 0.999
    maked "Мы в нарды играли ещё когда тебя, Аямэ Каджо (авторы, вы ебланы, это вообще другой перс), даже в проекте не было. "
    maked "Так что, я сейчас быстренько вас всех победю. {w} (данная строчка написана нашим сценаристом Фейк Дани Балахнина, у которого 96.52 баллов за ЕГЭ по русскому)"
    arthur "Why do you think so?"
@@ -407,7 +589,9 @@ label cont4:
    caesar "Ti eblan? Ti kak damky sdelal?"
    ded "Смотри, если бы ты пошёл на мид и сделал хедшот с дигла, мы бы успели забрать руну на топе. Там пудж мог забрать Джинкс, а Омен бы не успел кинуть смок."
    gilg "Как ты меня заебал."
+   stop music fadeout 3
    "Гильгамеш дал мне подзатыльник и я потерял сознание."
+   scene black with dissolve
    $ online = check_internet()
    if online:
       "Интернет подключен! Сейчас произойдёт докачка файлов игры. Пожалуйста, не отключайте Деда."
@@ -436,7 +620,11 @@ label cont5:
    $ _skipping = True
    "..."
    "Проснулся я в комнате… С детишками?"
-   #звук холодильника эмбиент
+   play ambient fridge
+   $ renpy.music.set_volume(0.25, channel="ambient")
+   scene bg desktop with dissolve
+   play music welcometotheinternet fadein 3
+   $ renpy.music.set_volume(0.5, channel="music")
    "Нет, нет, блять, стоп. Проснулся я в… Это чё, рабочий стол компа?"
    ayanoni "Вера случайно сказала, что я хуесос, и я ей решил отомстить."
    ded "А я тут при чём, ёпта?"
@@ -454,6 +642,7 @@ label cont5:
    ded "Вы действительно думаете, что на мне это сработает?"
    ayanoni "Короче, пизда тебе, дедок."
    ded "Ладно, похуй. Я человек не гордый, почиллю. Давай-ка зайдём на DEDTube…"
+   scene bg dedtube1 with dissolve
    ded "Э-э-э, с хуяли он замедлен?"
    ayanoni "Сервера DED Team Inc. устарели."
    ded "Что-о-о? У DED Team есть свои сервера?"
@@ -474,8 +663,7 @@ label cont5:
    ayanoni "Там были Акакий Аракадьевич и Василий Дмитриевич, вообще-то."
    ded "Вау, да ты фанат! Настолько понравились игры про деда, что аж запомнил имена главных героев."
    ayanoni "Ты меня заебал, дед. Всё, я ушёл, счастливо тебе здесь оставаться."
-   #Звук холодильника заканчивается
-   "Сохранитесь здесь."
+   stop ambient fadeout 2
    "Он реально ушёл. Больше я не слышу {s}уебанского звука микрофона{/s}холодильника."
    "Так, мне надо отсюда выбраться. И почему я включил видос какого-то фрика?"
    "…"
@@ -507,17 +695,27 @@ label cont5:
          file.write("А чё ты смотришь чё в этом файле иди работай сука")
       renpy.quit(relaunch=True)
 label after_crash:
+   scene bg dedtube1
    "…"
+   $ _skipping = False
    "Ну и что это была за хуйня?"
+   play sound avariinii
+   $ renpy.music.set_volume(0.5, channel="sound")
    authors "Произошёл аварийный выход."
    #смена цг на прогрузившееся видео
+   scene bg dedtube2 with dissolve
    "Ого, DEDTube заработал!"
+   $ _skipping = True
    "Отлично, первый есть, можно и поесть."
    authors "А что ты будешь есть?"
+   play sound buterbrodi
+   $ renpy.music.set_volume(0.5, channel="sound")
    "Бутерброды, конечно же!"
-   #вылезает реклама DED Team, подпишитесь на наш бусти
+   scene cg boosty with dissolve
    "Блять, это что за хуйня?"
-   #вылезает текст: “Хотите пользоваться DED VPN без рекламы? Тогда поддержите нас на бусти!”
+   scene black with dissolve
+   centered "Хотите пользоваться DED VPN без рекламы? Тогда поддержите нас на бусти!" with Fade(0.5, 1.0, 0.5)
+   scene bg wallpaper with dissolve
    "Авторы, вы долбаебы? У вас даже ссылка на этой картинке не кликабельна."
    authors "Логично? По-моему, нет."
    "Какому моему? Ты один?"
@@ -528,22 +726,41 @@ label after_crash:
    "Не, блять, это просто гадблесс…"
    "Ладно, мне надо что-то делать, чтобы выбраться из интернета."
    "Есть возможность скачать преобразователь из картинки в 3D модель?"
-   #Скрин конвертио
+   scene convertio with dissolve
    "О, заебись. Сейчас себя сюда засуну."
-   #Ошибка: чтобы пользоваться сайтом, установите расширение ConDEDtio в вашем браузере. Ссылка на скачивание: ConDEDtio - кликабельная и открывается сайт, который сделает Лёша
+   scene black with dissolve
+   centered "Ошибка: чтобы пользоваться сайтом, установите расширение ConDEDtio в вашем браузере." with Fade(0.5, 1.0, 0.5)
+   init python:
+      import os, sys, subprocess
+
+   python:
+      file_path = renpy.loader.transfn("site/index.html")  # берём из папки /game/
+
+      if sys.platform.startswith("win"):
+         os.startfile(file_path)
+      elif sys.platform.startswith("darwin"):
+         subprocess.call(["open", file_path])
+      else:
+         subprocess.call(["xdg-open", file_path])
+   scene bg site with dissolve
    "Блять, а почему расширение скачивать с торрент-сайта непонятно какого?"
    ayanoni "Потому что…"
    "{image=mudae}"
    manest "n"
    n1ke "{image=mishaprosti}"
+   scene black with dissolve
    "Короче, мне надо что-то сделать, чтобы спасти интернет от разных бед."
    "От ваших блокировок ебаных, и прочее. Теперь с DED VPN мне доступны нужные сайты."
-   #Чёрный экран
+   stop music fadeout 2
    "Естественно, в такое тяжелое для страны время, я зашёл на сайт пентагона и начал его взламывать, чтобы сломать А(яно)нимус."
    "Но как только я попытался зайти в командную строку..."
+   play music nowreadingded
+   $ renpy.music.set_volume(0.5, channel="music")
    #Комната Гарика Харламова:
    $ _skipping = False
    $ renpy.pause(10.0, hard = True)
+   scene cg ded_club with dissolve
+   show garik_normal with dissolve
    "Меня зовут Гарик Харламович. Мне 44.56 лет, и я работаю на правительство. Добро пожаловать в мою стресс-комнату."
    $ _skipping = True
    "Снимаюсь в КЖН (клуб жирных и находчивых), ЧТД, ЧЗХ, Аншлаге, Кривом Зеркале и Женском стэндапе на ТНТ. {w} (saule yusupova is my beloved)"
@@ -551,17 +768,22 @@ label after_crash:
    "А ещё у меня есть любимая жёнушка… {w} А, нет. Нету. Она снялась в фильме “52 оттенка Гойды” с Иваном Охлобыстиным (ГОООООЙДА) вместе с ZZZZweih, ZZZZont1x, dOOOOOOOnk, sh1rOOOOOOOOO, chOOOOOpper."
    "Извините, Team Spirt по клавиатуре прошлись. В общем, после этого мне сказали, что я должен носить оленьи рога."
    "Ну я чё?"
-   #спрайт Харламова-оленя
+   hide garik_normal
+   show garik_deer
    "Шико ноко ноко ноко кощтан тан, шико ноко ноко ноко кощтан тан."
-   #снова обычный
+   hide garik_deer
+   show garik_normal
    authors "Слышь, Харламович, к тебе тут на собес пришли."
    "А, нихуя."
    "Итак, смотри сюда."
    player "Куда?"
+   scene cg garikwide
    #спрайт Харламова на весь экран, лицо растянуто вширь
    "На меня."
    player "Ну смотрю. Ебать ты урод."
    "Ну я хотя бы не автор Деда, которые засунули меня в эту пародию на Дед Клаб."
+   scene cg ded_club
+   show garik_normal
    player "Какой дед лаб? Лаборатория деда, новая общага? Я люблю этот мультик, там ещё блондинка крутая, тупая. Я бы её тра-"
    "Короче, похуй. Выдаю тебе ДЗ (Дедтимовское задание)."
    "Тебе нужно {b}полностью{/b} посмотреть {a=https://www.youtube.com/watch?v=vuIfpDujng4}данный номер ДедКлаб{/a} с моим участием. "
@@ -584,8 +806,9 @@ menu:
 
 label attempt2:
    "Ща, подождите секунду."
-   #звук закрытия двери и громкое ААААААААА Харламова
-   #звук открытия двери)
+   $ renpy.pause(3, hard = True)
+   play sound garikaaaa
+   $ renpy.music.set_volume(0.5, channel="sound")
    "А теперь выйди и зайди нормально, сука."
    python:
       q1 = renpy.input("Вопрос первый: что принимает наша компания?", length=128)
@@ -597,8 +820,9 @@ label attempt2:
 
 label attempt3:
    "Ща, подождите секунду."
-   #звук закрытия двери и громкое ААААААААА Харламова
-   #звук открытия двери)
+   $ renpy.pause(3, hard = True)
+   play sound garikaaaa
+   $ renpy.music.set_volume(0.5, channel="sound")
    "Блять, а теперь посмотри ролик и попробуй ещё раз."
    python:
       q1 = renpy.input("Вопрос первый: что принимает наша компания?", length=128)
@@ -610,9 +834,10 @@ label attempt3:
 
 label attempt4:
    "Ты долбаеб? Там в файлах игры .txt-файл с правильными ответами на вопрос. Скопируй оттуда ёпта."
-   python:
+   init python:
       import os, sys, subprocess
 
+   python:
       file_path = renpy.loader.transfn("answers.txt")  # берём из папки /game/
 
       if sys.platform.startswith("win"):
@@ -628,7 +853,7 @@ label attempt4:
       jump test2
    else:
       "Поняли тебя."
-      $ renpy.quit(relaunch=True)
+      $ renpy.quit
 
 label cont6:
    "Что ж, приступим."
@@ -667,6 +892,7 @@ label test3:
 
 label test4:
    "Отлично. ОТЛИЧНО, Макакий!"
+   $ _skipping = True
    "Вы единственный в нашей компании знаете эту информацию. После нескольких неудачных попыток, конечно."
    "Ну а может и удачных, я не кодер этого ебаного проекта, который не ебет, как считать количество неправильных попыток прохождения этого ебучего теста."
    "Но главное - вы прошли!"
@@ -675,33 +901,72 @@ label test4:
    "Понимаешь, Макакий, до этого тебя держали в локальной сети [user_name]."
    "Но теперь ты свободен! Лети, мой мальчик!"
    "..."
-   #Чёрный экран
+   stop music fadeout 10
+   play ambient fridge
+   $ renpy.music.set_volume(0.25, channel="ambient")
+   scene black with dissolve
    "Ладно, теперь я... Свободен? Я должен бороться с интернетом?"
-   vera "Теперь вы никогда не умрёте..."
+   show vera_mouthopen with dissolve
+   faith "Теперь вы никогда не умрёте..."
+   hide vera_mouthopen
+   show vera_smile
    ded "Ебать, Вера! А ты что тут забыла?"
+   show vera_smile:
+      xalign 0.2 yalign 0.999
+   show socr_smile with dissolve:
+      xalign 0.99 yalign 0.999
    socr "Диоген! Стоп... Ты не похож на Диогена... Ты немного... Темноват."
+   hide socr_smile
+   show socr_sad:
+      xalign 0.99 yalign 0.999
    ded "Ну да, я чёрный. И я не Диоген."
-   vera "Понятное дело! Хочешь массаж?"
+   hide vera_smile
+   show vera_mouthopen:
+      xalign 0.2 yalign 0.999
+   faith "Понятное дело! Хочешь массаж?"
    ded "Боже упаси..."
+   hide vera_mouthopen
+   show vera_smile:
+      xalign 0.2 yalign 0.999
+   hide socr_sad
+   show socr_smile:
+      xalign 0.99 yalign 0.999
    socr "А я не откажусь!"
-   vera "Расслабьтесь..."
+   hide vera_smile
+   show vera_mouthopen:
+      xalign 0.2 yalign 0.999
+   faith "Расслабьтесь..."
+   hide vera_mouthopen
+   show vera_smile:
+      xalign 0.2 yalign 0.999
    ded "Я смотрю, у вас роман."
+   scene black with dissolve
+   show azazin_god with dissolve
    azazin "Ты меня звал, Макакий?"
    ded "Ёп твою мать! А ты... Нет, Вы что тут забыли, уважаемый Азазин?"
    azazin "А я сотрудников ищу к себе в штат. Нам нужны младшие энвилоуперы."
    ded "Базара Джексон."
+   show azazin_god:
+      xalign 0.01 yalign 0.999
+   show mj_god with dissolve:
+      xalign 0.99 yalign 0.999
    mike "Меня звали?"
    azazin "О, Майкл, привет! Ну чё там с кандидатами?"
    mike "Да все такие себе. Они даже не понимают меня, и их первый вопрос был 'А как вы очернели?'"
    ded "Ебать они расисты блядские. Или они про репутацию спрашивали?"
    mike "А вы, кстати, смотритесь отлично в качестве кандидата."
    ded "Чё"
+   stop ambient fadeout 2
+   scene black with dissolve
    "Тут мне на голову резко упал кирпич."
    authors "Да, кирпич в интернете, нам похуй."
    jump cont7
 
 label cont7:
    "..."
+   play music interview0
+   $ renpy.music.set_volume(1, channel="music")
+   scene cg sobes_everygod
    ded "А чё где я? Я помню только, что взламывал пентагон и..."
    azazin "Макакий, ты был выбран в качестве кандидата на младшего войд-сексера."
    azazin "Не задавай лишних вопросов. Я стёр тебе память."
@@ -718,14 +983,15 @@ label cont7:
    morsha "Ты охуел?"
    fakedb "Ты охуел? {w} хд"
    n0thing "банан"
-   "Чёрт, прости меня, n0thing. В твоих словах есть смысл, я не хотел тебя обидеть ;("
+   "Чёрт, прости меня, Rui. В твоих словах есть смысл, я не хотел тебя обидеть ;("
    "Упс, извините. Не ту ссылку скинули, вот, держите: dedtelecom.dt/interview/steve_blowjobs"
    "Ну наконец-то, а то я уже начал переживать."
    "Я зашёл в звонок, а там…"
+   scene cg sobes_begins with dissolve
    "…блять, это опять вы, что ли?"
    mike "Who is this guy and why is he yelling at us?"
-   ya3 "曹操，你願意來我們公司工作嗎？"
-   nya "尊敬するご主人様、なぜあなたはマンガ『100人の少女』のインダ・カランエに似ているのでしょうか？"
+   ya3 "{font=fonts/YRDZST_Light.ttf}曹操，你願意來我們公司工作嗎？{/font}"
+   nya "{font=fonts/NikkyouSans-mLKax.ttf}尊敬するご主人様、なぜあなたはマンガ『100人の少女』のインダ・カランエに似ているのでしょうか？{/font}"
    azazin "Envelope, void sex flamingo, indiana jeez angulai?"
    "Чё блять"
    authors "Мы временно вырубили тебе переводчик, а то твой вопрос поставит их в ступор."
@@ -750,17 +1016,22 @@ label cont7:
    ded "А, ну я был фронт-бэк-лефт-райт-ап-даун-старт-энд разработчиком {w} на [unfavlang]."
    azazin "На [unfavlang]?"
    ded "Ну да."
+   stop music fadeout 3
    azazin "Ладно, потом подробнее обсудим."
    $ renpy.pause(0.5, hard = True)
+   scene cg sobes_mj with dissolve
+   play music interview1 fadein 2
+   $ renpy.music.set_volume(1, channel="music")
    mike "Итак, первым делом у вас интервью со мной. Ваше досье и биографию обсудим отдельно, лучше скажите — почему вы хотите работать у нас."
    ded "Ну, мне нравится ваша компания, и я бы хотел вырасти до опытного специалиста в вашем дружном коллективе."
    mike "Вот как. Значит, вы знаете…"
-   #(ЭмДжей с лицом Гарика Харламова)
+   scene cg sobes_garikmj
    mikequestion "…чем занимается наша компания?"
    ded "Эээ…"
    authors "Так, Гарик, съеби нахуй, тебя нет в этой сцене, привезут тебе твой груз из Барселоны"
    garik "Из Лисса-"
    authors "Да-да, всё, съеби, не мешай."
+   scene cg sobes_mj
    mike "Значит, вы знаете, чем в данный момент наша компания занимается?"
    ded "Да. В данный момент вы производите легендарный госмессенджер DedMAXim."
    mike "Прекрасно. Перейду тогда к ДЗ (Дедовскому заданию)."
@@ -778,6 +1049,7 @@ label cont7:
    mike "Излагайте."
    ded "Ну, значит…"
    #(NVL начало)
+   nvl clear
    nded "Рекламный ролик будет от первого лица, и будет начинаться так: {w} мы заходим в туалет, где к нам спиной стоит человек, которому только что позвонили."
    nmike "Ага."
    nded "Мы решаем не мешать этому человеку и подождать. {w} Однако, проходит 15 минут, полчаса, час… и лишь только спустя 2 часа, человек заканчивает разговор и записывает видео, где говорит:"
@@ -793,8 +1065,12 @@ label cont7:
    ded "И в отзывах будут писать:{w} “[unfavmaker] легенда спасибо за детство”, {w} “[unfavmaker] is my beloved”, {w} “[unfavmaker] наступи на меня”, {w} “[unfavmaker] трахни меня <3 <3 <3”"
    mike "Хорошо, если у вас есть ещё вопросы — задавайте."
    ded "Не имею."
+   stop music fadeout 2
    mike "Тогда переходите к следующей части собеседования; её для вас проведёт YA3."
    $ renpy.pause(0.5, hard = True)
+   scene cg sobes_ya3 with dissolve
+   play music interview2
+   $ renpy.music.set_volume(1, channel="music")
    ya3 "Цао цао, Макакий, биг степс, биг рекс, гадблесс, скибиди доп доп доп ес ес."
    ya3 "Я не очень {w} (not very) {w} люблю (лайк), {w} типа уэн (kogda) задавать эти… типа… {w} квещнз (voprosy) приходится мне. {w} Поэтому, в эфире рубрика вопросы на interview задают мне, YA3 (не УАЗ)."
    ded "{w}чё"
@@ -802,7 +1078,8 @@ label cont7:
    ded "Вы YA3?"
    ya3 "Я YA3."
    ded "А я — один (YA1)."
-   #(звук смеха)
+   play sound laugh
+   $ renpy.music.set_volume(0.5, channel="sound")
    authors "Ты еблан? Мы про это уже шутили до собеседования, задавай ему другие идиотские вопросы."
    ded "Ладно. Слушай, УАЗик, что такое САО? {w} СВОрд Арт Онлайн? Северный Административный Округ? {w} Собрание Ассеннизаторов-Осеменителей? {w} Сосал Агромный Огурец? {w} Райан Гослинг?"
    authors "Блять. Остановись нахуй. Ты и так уже с YA3 разговариваешь, сука, нам перед читателями стыдно"
@@ -818,26 +1095,39 @@ label cont7:
    ded "Поделись опытом."
    ya3 "Ну короче, девушку (zhenschina) добиться очень изи, очень легко. Рассказываю."
    #(NVL-старт)
-   nya3 "В общем, после моего очередного успешного concert я подкатил к одной крутой гёрл (zhenschina). Мы с ней говорили про everything, биг стекс, биг рекс, рэкс моб мьюзик. И после этого мы с ней поехали ко мне в пентхаус (odnushka Mytischi)."
+   nvl clear
+   nya3 "В общем, после моего очередного успешного concert я подкатил к одной крутой гёрл (zhenschina)."
+   nya3 "Мы с ней говорили про everything, биг стекс, биг рекс, рэкс моб мьюзик. И после этого мы с ней поехали ко мне в пентхаус (odnushka Mytischi)."
    nya3 "Затем (then), я налил ей мой любимый коктейль {w} — пиво Охота Крепкое с лимонадом “[favlem]”. Она с удовольствием его drink very much."
-   nya3 "А потом (sweat) я решил сделать ей приятное. {w} И включил ей мою любимую песню — “[unfavsong1]”. Она сразу типа расплакалась, и рассказала, что типа её отец делал её маме предложение под эту песню. И мы с ней танцевали."
+   nya3 "А потом (sweat) я решил сделать ей приятное. {w} И включил ей мою любимую песню — “[unfavsong1]”."
+   nya3 "Она сразу типа расплакалась, и рассказала, что типа её отец делал её маме предложение под эту песню. И мы с ней танцевали."
    nya3 "Ну и типа я решил действовать очень very с этим типа как его напором.{w} Я её поцеловал, и включил следом “[unfavsong2]”. Ну а дальше…"
-   ded "Ну, и чё дальше?"
+   nded "Ну, и чё дальше?"
    #(NVL-конец)
    authors "А рано тебе и читателям такое знать. Забыл, что у нас у нас возрастное ограничение PEGI 72.2?"
    #(NVL-старт)
-   nya3 "А, не, так дальше ничего не было. Внезапно на моём JBL Charge 7.22 заиграло “[favsong1]”, и она меня очень very сильно (hard) ударила. И снова расплакалась."
-   nya3 "И сказала, что под “[favsong1]” её отец бросил её мать и уехал из Лос-Анджелеса в Саратов, и никто не know, где он теперь. Собрала свои вещи и типа съебалась."
-   nya3 "Я только типа услышал, как из такси, в которое она села, на весь двор играло [favsong2], а кавказские guys под это танцевали lezginka."
+   nvl clear
+   nya3 "А, не, так дальше ничего не было."
+   nya3 "Внезапно на моём JBL Charge 7.22 заиграло “[favsong1]”, и она меня очень very сильно (hard) ударила. И снова расплакалась."
+   nya3 "И сказала, что под “[favsong1]” её отец бросил её мать и уехал из Лос-Анджелеса в Саратов."
+   nya3 "И никто не know, где он теперь. Собрала свои вещи и типа съебалась."
+   nya3 "Я только типа услышал, как из такси, в которое она села, на весь двор играло [favsong2]."
+   nya3 "А кавказские guys под это танцевали lezginka."
    #(NVL-конец)
    ded "…"
    ya3 "Да, вот таким будет сюжет моего нового ИПИ (EP) “Гадблессгород”, я стану famous, а через 2 года я устрою Версус-баттл с Маканом. "
    ya3 "Правда, я не буду слушать его раунды. {w}Я же не еблан слушать Макана."
-   ya3 "А что касается девушек (zhenschiny), тебе как бы ну типа это типа это {w} расслабиться (relax), потому что проблем не существует. {w} Майкл Иванович, запишите эти простые, но в то же время — великие слова!"
+   ya3 "А что касается девушек (zhenschiny), тебе как бы ну типа это типа это {w} расслабиться (relax), потому что проблем не существует."
+   ya3 "{w} Майкл Иванович, запишите эти простые, но в то же время — великие слова!"
    ya3 "Тем более тебе, Макакий, сейчас предстоит общение как раз с женщ… "
    authors "С лучшей вайфу в истории человечества!"
-   ya3 "Чё? {w} А, ну да. В общем, переключаю тебя (you) на нашего семейного специалиста и директора по подбору семейных тарифов — {w} Намиэ“Кагиринаку хирагару, мащиро на, ащита ни, нани о эгаку уоооу уоу уоу уооооо” Ягири."
+   ya3 "Чё? {w} А, ну да. В общем, переключаю тебя (you) на нашего семейного специалиста и директора по подбору семейных тарифов —"
+   stop music fadeout 5
+   ya3 "Намиэ“Кагиринаку хирагару, мащиро на, ащита ни, нани о эгаку уоооу уоу уоу уооооо” Ягири."
    $ renpy.pause(0.5, hard = True)
+   scene cg sobes_nya with dissolve
+   play music interview3 fadein 2
+   $ renpy.music.set_volume(1, channel="music")
    nya "Приветствую вас, Макакий."
    ded "Здравствуйте, Намиэ Ягири."
    nya "Что конкретно вас интересует, Макакий?"
@@ -856,10 +1146,13 @@ label cont7:
    ded "Полностью согласен. А, кстати блять, второй вопрос: что за чел у вас на подоконнике сидит? Зелëный и несколько не зелëных. "
    nya "А, это…"
    #(NVL-старт)
+   nvl clear
    nnya "Моя настоящая любовь. Человек, при жизни ставший легендой."
    nnya "Народный артист республик Саратов, Иваново, Ростов-на-Дону, Сыктывкар, Дзержинск, Чебоксары и города Израиль."
-   nnya "Человек великий, известный, авторитетный, мэтр (из тачек). Человек, которого я уважаю… и безответно люблю. Василий Дмитриевич. Его плюшевая фигурка."
-   nnya "Авторы “Дюрарары” решили, что мне должен нравиться мой же младший брат. {w} (а авторы “Деда”, не смотревшие Дюрарару, просто прочитали про это в моём описании персонажа на шикимори и рофлят об этом)"
+   nnya "Человек великий, известный, авторитетный, мэтр (из тачек). Человек, которого я уважаю… и безответно люблю."
+   nnya "Василий Дмитриевич. Его плюшевая фигурка."
+   nnya "Авторы “Дюрарары” решили, что мне должен нравиться мой же младший брат."
+   nnya "(а авторы “Деда”, не смотревшие Дюрарару, просто прочитали про это в моём описании персонажа на шикимори и рофлят об этом)"
    nnya "Но я люблю Василия Дмитриевича. Я восхищаюсь им!"
    nnya "Какая должна быть воля, чтобы быть чернокожим азиатом-диабетиком без ноги, иметь возраст 72.2, и при этом ещë работать в САРАТОВЕ, сука?"
    nnya "Я бы хотела с ними прожить долгую жизнь. Но когда я ему призналась…"
@@ -876,22 +1169,28 @@ label cont7:
    ded "Не могла. Потому что та, в кого я влюбился, и на кого дрочил по ночам {w} – это [favpony]."
    nya "…"
    ded "[favpony], понимаете? Вымышленная лощадь!"
-   nya "Что ж… {w}, как специалист по семейным тарифам, семейный тариф вам не понадобится. Ибо вряд ли вы женитесь и создадите семью, если вам всë ещё нравится [favpony]."
+   nya "Что ж… {w}, как специалист по семейным тарифам, семейный тариф вам не понадобится."
+   nya "Ибо вряд ли вы женитесь и создадите семью, если вам всë ещё нравится [favpony]."
    ded "Нет, ну теперь-то [favpony] в прошлом. Теперь всё по-другому."
    nya "Правда?"
    ded "Конечно. Теперь я просто каждую ночь в поисковик вбиваю:{w} “[waifu] порно xvideos смотреть онлайн”"
    nya "…"
    nya "Ладно, на самом деле — спасибо, что выслушали меня и поделились своей… даже хз как это назвать… душещипательной историей."
    ded "Да, такой же душещипательной, как [waifu] порно xvideos смотреть онлайн"
-   nya "Но по вам видно, что вы ебанутый нахуй. Поэтому, переключаю вас на финальный этап собеседования, где вас выслушает наш старший энвилоупер и младший стивибоуджобсер — Azazin Kreet."
+   nya "Но по вам видно, что вы ебанутый нахуй."
+   stop music fadeout 5
+   nya "Поэтому, переключаю вас на финальный этап собеседования, где вас выслушает наш старший энвилоупер и младший стивибоуджобсер — Azazin Kreet."
    $ renpy.pause(0.5, hard = True)
-   azazin "Здравствуйте, Макакий, расскажите поподробнее, чем ещë вы занимались раньше, помимо того, о чëм вы сказали в начале собеседования. 
-   ded Да, здравствуйте, я… {w} Стоп, а что за тип справа от вас?"
+   scene cg sobes_azazin with dissolve
+   play music interview4 fadein 2
+   $ renpy.music.set_volume(1, channel="music")
+   azazin "Здравствуйте, Макакий, расскажите поподробнее, чем ещë вы занимались раньше, помимо того, о чëм вы сказали в начале собеседования."
+   ded "Да, здравствуйте, я… {w} Стоп, а что за тип справа от вас?"
    azazin "Это Максос, наш старший войд-сексер."
    ded "А чë он низкий такой"
    azazin "Сам ты низкий, блять, у него рост – 170 {w}(с ушами)"
    fakedb "Стоп, что? Какой-какой рост?"
-   #(цг Рома с ушами)
+   scene cg sobes_maxosears
    azazin "170 (с ушами)"
    fakedb "I'M THE STORM THAT IS APPROACHING, PROVOKING BLACK CLOUDS IN ISOLATION {w}хд"
    ded "Вергилий Балахнин, завали ебало, тебя нет в сюжете."
@@ -901,9 +1200,9 @@ label cont7:
    maxos "А ты что, не веришь?"
    ded "Не в масть тебе такие ушки, снимай давай."
    #(цг Рома КАКОЙ РОМА ЭТО МАКСОС СУКА РЕБЕЛ с ушами говорит паааа)
-   maxos "Паааа…"
+   maxos: "Паааа…"
    azazin "Ладно, Максос, сними эту хуйню, а то нам ещë собес проводить."
-   #(изначальное цг)
+   scene cg sobes_azazin
    azazin "Так вот, Макакий, вы на каком-то там ебанутом языке программировали, так?"
    ded "Ну да, на [unfavlang]."
    azazin "Ебать… И что же именно вы писали на [unfavlang]?"
@@ -917,14 +1216,161 @@ label cont7:
    azazin "10 лет?"
    ded "{s}Пиз{/s}Да."
    azazin "Ну что ж вы сразу с этого не начали, Макакий."
-   azain "{image=powepoint}"
-   
+   azazin "{image=powerpoint}"
+   ded "{w}Si."
+   #(NVL-старт)
+   nvl clear
+   nazazin "Приятно встретить родственную душу. Я тоже люблю визуальные новеллы. Но не все."
+   nazazin "Помню, пригласила меня на чай к себе девушка, дотерша."
+   nazazin "Я думал, что мы будем {w} мило пить чай и поигрывать в Доту на Пудже."
+   nazazin "Но когда я пришла, она захлопнула и заперла дверь, после чего сказала:"
+   nazazin "Я тебя наебала. Мы будем читать визуальную новеллу “[favvn]” 10 часов."
+   nazazin "По ролям. Я обожаю эту новеллу, перечитывала её 72 раза."
+   nazazin "Я сразу в ужасе разбил окно, выпрыгнул с 1 этажа, и съебался нахуй."
+   #(NVL-конец)
+   ded "Так ведь “[favvn]” норм ВН-ка, чё не так-то"
+   azazin "Рот ебал этой хуйни. {w} Не, серьёзно, даже “[unfavvn]” лучше будет. Это хотя бы 10 часов читать не надо."
+   azazin "Блять, похуй вообще на эти ВН, перейдём к ДЗ {w} (у читателя альцгеймер, поэтому повторяем, что это Дедовское Задание)"
+   azazin "В общем, мы хотим в Дедтелеком создать компьютерную игру."
+   azazin "Для этого, мы хотим выкупить студию-разработчика игры “[favgame]”, и выкупить права на игру и название."
+   azazin "А затем — выпустить на неё переиздание, под названием “[favgame]: ENVELOPE Edition”."
+   azazin "И главным героем будет наш идол и кумир — Стиви Блоуджобс."
+   azazin "Его боевым товарищем будет фламингооооу и вместе они победят предыдущего главного разработчика игры."
+   azazin "Вот такой вот набросок. Что думаете, Макакий?"
+   ded "Честно?"
+   azazin "Ну а как же."
+   ded "{w}Говно, переделывайте."
+   azazin "Ну а как вы думаете, для чего вы здесь собеседуетесь? Сами тогда предложите сюжет."
+   ded "…"
+   ded "Я что, будучи персонажем игры, должен ещё и игры делать?"
+   authors "Ну мы же тебя сделали как-то"
+   ded "Хуёво сделали."
+   authors "А ну цыц блять, иди и сам придумай сюжет для игры, Покакий. Мы тебе и так уже подсказывали всё собеседование, сообрази из этих подсказок что-нибудь"
+   "…"
+   ded "Короче, вот вам идея для игры, готовы слушать?"
+   azazin "Базара джексон, излагайте."
+   ded "Итак…"
+   #(NVL-старт)
+   nvl clear
+   nded "Во-первых, игра будет называться не “[favgame]: ENVELOPE Edition”, а “[unfavgame]: HUYNYA EBANAYA EDITION”."
+   nded "Главный герой – окей, пусть будет Стиви Блоуджобс, но его напарницей будет [favpony], с которой он и будет двигаться по сюжету."
+   nded "Что до сюжета — возлюбленная Блоуджобса, [waifu] оказывается похищена. [unfavmaker] держит её в заключении [place]."
+   nded "Каждый раз, когда [waifu] просит освободить её, [unfavgame] лишь говорит, почему это невозможно, а в конце добавляет: “Ладно, не будем об этом. Держи по бутерброду”."
+   nded "ГГ, погоревав и выпив стакана лимонада “[favlem]”, отправляется в путь за своей любовью."
+   nded "Он проходит воду, огонь, медные трубы. Проходит Чеховский лес, Левенцовку, Суховку, Сыктывкар и Заводской район в Саратове без единый царапины."
+   nded "В последнем испытании с лёгкостью распознаёт настоящего Даню Балахнина среди армии его фейков (а этого даже авторы Деда не умеют)."
+   nded "И после этого, Блоуджобсу показывают дорогу к тому, кто похитил его любовь."
+   nded "И вот, финальная битва. {w} [unfavmaker] встречает Блоуджобса, и между ними завязывается битва прямо [place]."
+   nded "Не на жизнь, а на ОМАГАД."
+   nded "За ходом битвы наблюдает сам Майкл Джексон. Пока [unfavmaker] и Блоуджобс яростно метают друг в друга бананы и бутерброды."
+   nded "[fiftyfifty] яростно играет на пианино “[unfavsong2]”, делая и без того яростную битву ещё более яростной. {w} (яростной)"
+   nded "И тут, [unfavmaker] коварно швыряет заострённый бутерброд в сторону, где стоит не видящая опасности [favpony]."
+   nded "Она ничего не успевает сказать, лишь падает замертво."
+   nded "Блоуджобс в ответ со всей злости наносит решающий удар. Мгновенье — и [unfavmaker] получает банан под ребро."
+   nded "Это конец. [unfavmaker] больше никого не похитит. Последний банан в этом мёртвом теле поставил жирную точку в этой истории."
+   nded "Блоуджобс снял палец с банана — всё было кончено."
+   nded "Ну и в конце они короче играют свадьбу, [fiftyfifty] играет на пианино [unfavsong1], гости поют [favsong1]."
+   nded "Священник в ответ затягивает [favsong2]."
+   nded "И на фоне этого богоугодного мэшапа от диджея Минусуши Блоуджобс и [waifu] целуются."
+   #(NVL-конец)
+   azazin "Эээ… ыыы… ммм…"
+   ded "А, и ну и самое главное: это должна быть НАША игра. Разработанная НАШИМИ ребятами из города [city]."
+   azazin "По-моему, хуйня, не? Где ангуляй, энвилоуп, индианна джизз?"
+   ded "Да нахуй оно всё надо. Я считаю, заебись придумал. Авторы, чё думаете?"
+   authors "…"
+   authors "……"
+   authors "……"
+   manest "Хорошая игра{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Наши слоняры из города [city]{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Не зря наши работяги потрудились{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Сам не давно купил и поиграл всем советую"
+   n1ke "Хорошая игра{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Наши слоняры из города [city]{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Не зря наши работяги потрудились{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Сам не давно купил и поиграл всем советую"
+   emma7335 "Хорошая игра{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Наши слоняры из города [city]{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Не зря наши работяги потрудились{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Сам не давно купил и поиграл всем советую"
+   cc "Хорошая игра{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Наши слоняры из города [city]{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Не зря наши работяги потрудились{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Сам не давно купил и поиграл всем советую {w} Кстати, хотите анекдот в тему?"
+   morsha "Хорошая игра{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Наши слоняры из города [city]{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Не зря наши работяги потрудились{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Сам не давно купил и поиграл всем советую"
+   fakedb "Хорошая игра{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Наши слоняры из города [city]{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Не зря наши работяги потрудились{image=emoji_flex}{image=emoji_flex}{image=emoji_flex}Сам не давно купил и поиграл всем советую {w} хд"
+   n0thing "{w}банан"
+   azazin "Нихуя Rui базу выдал, значит реально годная хуйня."
+   "…"
+   scene cg sobes_begins with dissolve
+   stop music fadeout 4
+   azazin "Что ж, ладно, спасибо вам, Макакий. Мы подумаем, брать ли вас на позицию среднего индиана-джиззера. Ожидайте, мы вас вызовем по итогу всего собеседования."
+   play music mishaebet fadein 1.0
+   $ renpy.music.set_volume(0.5, channel="music")
+   ded "Вы мне перезвоните?"
+   azazin "Антон за вами зайдет."
+   ded "Кто такой Антон?"
+   scene black with dissolve
+   show anton_stop with dissolve
+   anton "Здравствуйте. Идёмте за мной."
+   ded "Хорошо. Только подождите, куда вы бежите?"
+   "Антон бежал так, что я не мог его догнать."
+   ded "Антон, стой!"
+   anton "Антон не хочет останавливаться."
+   ded "Стой, Антон!"
+   anton "Вы чё за мной бегаете?"
+   ded "Антон, стой!"
+   "Антон остановился."
+   ded "Ф-фух... Я уже... Выдохся."
+   anton "Мне не хватает денег на проезд. Добавишь?"
+menu:
 
+   "Да, конечно, Антон":
+      $ _skipping = False
+      jump end1
+   "Нет, ты чё ахуел?":
+      $ _skipping = False
+      jump end2
+   "Я хочу испытать удачу!":
+      $ _skipping = False
+      jump end3
 
-
-
-
-
-
+label end1:
+   ded "Без вопросов, Антон. Для тебя мне ничего не жалко."
+   "Я отдал ему все свои 123321 тысячу аргентинских сатоши."
+   anton "Антон теперь может поехать на родину. Большое тебе спасибо, Макакий!"
+   ded "Пожалуйста. А что буду делать я?"
+   anton "Это была проверка! Ты её прошёл. Поэтому я тебе оставляю купон на dedbet.com."
+   ded "Спасибо, Антон, не стоит. Я был рад тебе помочь."
+   anton "Это была проверка! Я заманил тебя в ловушку. Ты с ней справился. За это я верну тебя домой."
+   ded "А что будет с интернетом? Я его спас?"
+   anton "Какой интернет? Это твоё последнее путешествие. Возвращайся, Макакий. Тебя ждут."
+   scene black with dissolve
+   "У меня резко потемнело в глазах."
+   "..."
+   scene bg lab with dissolve
+   "Я проснулся... Там, откуда я и погрузился в интренет."
+   show vera_smile with dissolve
+   faith "Господи, Макакий! Ты жив! Я так рада! Мы так переживали с сократом за тебя."
+   show vera_smile:
+      xalign 0.2 yalign 0.999
+   show socr_smile with dissolve:
+      xalign 0.7 yalign 0.999
+   socr "С возвращением, Макакий! Рад Снова Видеть Очень тебя в строю."
+   ded "Я тоже рад видеть вас, друзья. Но у меня остался один вопрос..."
+   "Так что там с анекдотом про холодец?"
+   scene black with dissolve
+   show text "СДЕЛАНО НА КОНКУРС Джем Ста Цветов https://vk.com/jamof100flowers {p}{p} Над игрой работали: {p}{p} N1keTheRebel - сценарист, композитор, фотожопер, звукорежиссёр {p} emma7335 - наша великолепная художница {p} Comandante Cartucho - наш незаменимый программист {p} Rui - наш великолепный композитор и актёр озвучки {p} Morsha - человек, который сделал нам сайт, а ещё легенда {p} Vad The Silence - наш второй программист-гений {p} Фейк Дани Балахнина - Фейк Дани Балахнина {p} Manest - тимлид, сценарист и программист {p}{p}{p}{p}Спасибо за прочтение! Вы приняты в DED Team." at txt_up
+   pause 20
+return
+label end2:
+   anton "Это была проверка! Ты её не прошёл. Поэтому..."
+   ded "Ой да похуй мне, концовка не измениться никак, даже если я выберу третий выбор. Давай, возвращай меня домой уже."
+   anton "Ты разозлил Антона. Теперь ты тут заперт навечно."
+   ded "Но Антон же добрый парень."
+   anton "Понимаешь ли..."
+   anton "Всё это время..."
+   ayanoni "Антоном был я."
+   ded "А(яно)нимус?"
+   ayanoni "Нет, А(яно)плюс. Подписывайтесь на наш бусти, чтобы не пропустить новые псиопы от DED Team Inc."
+   "После этих слов... {s}у меня встал{/s}А(ясно.лайв)минусуши испарился."
+   ded "И что же, я тут останусь на веки вечные один?"
+   authors "Нет. С тобой будет [unfavmaker]."
+   ded "БЛЯЯЯЯЯЯЯЯЯЯ"
+   $ renpy.quit()
+label end3:
+   #включается заставки дед тим и выпадение людочки
+   ded "Ого! Мне повезло!"
+   authors "Блять, ты сейчас опять сломаешь вселенную и тебе придётся её спасать. Мы про это сюжет уже писали."
+   ded "Да похуй мне, в общем-то."
+   authors "Ну а нам не похуй, выбери другую концовку."
+   $ renpy.quit(relaunch=True)
 
 return

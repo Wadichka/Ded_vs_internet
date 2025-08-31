@@ -12,7 +12,7 @@
 ##
 ## Символы "_()", окружающие название, отмечают его как пригодное для перевода.
 
-define config.name = _("Ded_vs_internet")
+define config.name = _("Последнее путешествие Деда")
 
 
 ## Определяет, показывать ли заголовок, данный выше, на экране главного меню.
@@ -30,6 +30,30 @@ define config.version = "1.0"
 ## Для отделения абзацев оставляйте между ними пустую строку.
 
 define gui.about = _p("""
+Сделано в рамках {a=https://vk.com/jamof100flowers}Джема Ста Цветов 2025{/a}
+
+Авторы:
+
+{a=https://vk.com/n1ketherebel}N1keTheRebel{/a}
+
+{a=https://vk.com/manestov}Manest{/a}
+
+{a=https://vk.com/id663821683}Comandante Cartucho{/a}
+
+{a=https://vk.com/mechtale}emma7335{/a}
+
+{a=https://vk.com/nothinglnowhere}Rui{/a}
+
+{a=https://vk.com/lyosha_morsha}Morsha{/a}
+
+{a=https://zenless.hoyoverse.com/zh-cn}Фейк Дани Балахнина{/a}
+
+{a=https://vk.com/theimperatorofingermanlandya}Vad The Silence{/a}
+
+ИСПОЛЬЗОВАННЫЕ РЕСУРСЫ:
+
+{a=https://freesound.org}Использованный ресурс для звуковых эффектов и эмбиента {/a}
+
 """)
 
 
@@ -37,7 +61,7 @@ define gui.about = _p("""
 ## постройке дистрибутивов. Оно должно содержать текст формата ASCII и не должно
 ## содержать пробелы, двоеточия и точки с запятой.
 
-define build.name = "Ded_vs_internet"
+define build.name = "Last_tour_of_grandpa"
 
 
 ## Звуки и музыка ##############################################################
@@ -62,7 +86,7 @@ define config.has_voice = True
 ## проигрываться в главном меню. Этот файл продолжит проигрываться во время
 ## игры, если не будет остановлен, или не начнёт проигрываться другой аудиофайл.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+define config.main_menu_music = "Just_Menu.mp3"
 
 
 ## Переходы ####################################################################
