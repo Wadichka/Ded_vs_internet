@@ -31,7 +31,7 @@ define nya3 = Character(_("YA3"), color="#027502", kind=nvl)
 define nya = Character('Намиэ Ягири', color="#c8ffc8")
 define nnya = Character(_("Намиэ Ягири"), color="#027502", kind=nvl)
 define maxos = Character('Максос', color="#c8ffc8")
-define garik = Character('Гарик Харламов', color="#c8ffc8")\
+define garik = Character('Гарик Харламов', color="#c8ffc8")
 define n = Character(None, kind=nvl)
 
 
@@ -896,12 +896,12 @@ label cont7:
    fakedb "I'M THE STORM THAT IS APPROACHING, PROVOKING BLACK CLOUDS IN ISOLATION {w}хд"
    ded "Вергилий Балахнин, завали ебало, тебя нет в сюжете."
    ded "Так вот, Максос, у тебя ушки-то… от Мияби чтоль?"
-   maxos: "Так я ж (фанат) Мияби."
+   maxos "Так я ж (фанат) Мияби."
    ded "Да ну?"
    maxos "А ты что, не веришь?"
    ded "Не в масть тебе такие ушки, снимай давай."
    #(цг Рома КАКОЙ РОМА ЭТО МАКСОС СУКА РЕБЕЛ с ушами говорит паааа)
-   maxos: "Паааа…"
+   maxos "Паааа…"
    azazin "Ладно, Максос, сними эту хуйню, а то нам ещë собес проводить."
    #(изначальное цг)
    azazin "Так вот, Макакий, вы на каком-то там ебанутом языке программировали, так?"
